@@ -2099,7 +2099,7 @@ body {
       display: flex;
       align-items: center; }
       .card .card-header .card-head-row .card-tools, .card-light .card-header .card-head-row .card-tools {
-        margin-left: auto;
+        scroll-margin-block-end: auto;
         float: right;
         padding-left: 15px; }
   .card .separator-solid, .card-light .separator-solid {
