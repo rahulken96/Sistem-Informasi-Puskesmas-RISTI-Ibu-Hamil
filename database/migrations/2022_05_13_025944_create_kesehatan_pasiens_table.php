@@ -17,6 +17,9 @@ class CreateKesehatanPasiensTable extends Migration
             $table->id();
             $table->foreignId('id_pasien')->constrained('pasiens');
             $table->string('keterangan');
+            $table->integer('kehamilan_ke')->unsigned();
+            $table->string('keluhan')->nullable();
+            $table->string('solusi')->nullable();
             $table->timestamps();
         });
     }
