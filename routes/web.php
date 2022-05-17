@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,14 +14,20 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', function () { return view('welcome'); });
 
-Route::get('/login', function () {
-    return view('login');
-});
+Route::get('/masuk', [UserController::class, 'index'])->middleware('guest');
+Route::post('/masuk', [UserController::class, 'masuk'])->middleware('guest')->name('masuk');
 
 Route::get('/dashboard', function () {
     return view('dashboard.index');
 });
+
+/* Admin */
+Route::get('/admin', function () { return view('admin.index'); });
+
+/* Bidan */
+Route::get('/bidan', function () { return view('bidan.index'); })->middleware('role:bidan');
+
+/* Kepala */
+// Route::get('/bidan', function () { return view('admin'); })->middleware('checkRole:admin');
