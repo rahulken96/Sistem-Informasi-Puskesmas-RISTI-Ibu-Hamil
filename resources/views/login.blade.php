@@ -2,21 +2,7 @@
 <html lang="en">
 
 
-<head>
-    <title>Login Page</title>
-    <link href="{{ asset('assets/img/kesmas.png') }}" rel="icon">
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-    <link href="{{ asset('assets/css/font-googleapis.css') }}" rel="stylesheet">
-
-    <link rel="stylesheet" href="{{ asset('assets/css/font-awesome.min.css') }}">
-
-    {{-- <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css') }}"> --}}
-    <link rel="stylesheet" href="{{ asset('assets/css/bootstrap/bootstrap.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/bootstrap/style.css') }}">
-
-</head>
+@include('layouts.landing-page.header')
 
 <body>
 
@@ -40,7 +26,7 @@
     <div class="row justify-content-center">
         <div class="col-md-7 col-lg-5">
             <div class="login-wrap p-4 p-md-5">
-                <div class="text-center"> <img src="{{ asset('assets/img/kesmas.png') }}" alt="50" width="100">
+                <div class="text-center"> <img src="{{ asset('assets1/img/kesmas.png') }}" alt="50" width="100">
                 </div>
                 <h3 class="text-center mb-4">Silahkan login untuk masuk!</h3>
                 <form action="{{ route('masuk') }}" class="login-form" method="POST">
@@ -67,7 +53,7 @@
                     <div class="form-group d-md-flex">
                         <div class="w-50">
                             <label class="checkbox-wrap checkbox-primary">Ingat Saya
-                                <input type="checkbox">
+                                <input type="checkbox" checked>
                                 <span class="checkmark"></span>
                             </label>
                         </div>
@@ -82,10 +68,10 @@
     </div>
     </section>
 
-    <script src="{{ asset('assets/js/jquery.min.js') }}"></script>
-    <script src="{{ asset('assets/js/popper.js') }}s"></script>
-    <script src="{{ asset('assets/js/bootstrap.min.js') }}"></script>
-    <script src="{{ asset('assets/js/main1.js') }}"></script>
+    <script src="{{ asset('assets1/js/jquery.min.js') }}"></script>
+    <script src="{{ asset('assets1/js/popper.js') }}s"></script>
+    <script src="{{ asset('assets1/js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('assets1/js/main1.js') }}"></script>
 
 </body>
 
