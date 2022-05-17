@@ -16,8 +16,8 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () { return view('welcome'); });
 
-Route::get('/masuk', [UserController::class, 'masuk'])->middleware('guest');
-Route::post('/masuk', [UserController::class, 'handle'])->middleware('guest')->name('masuk');
+Route::get('/masuk', [UserController::class, 'index'])->middleware('guest');
+Route::post('/masuk', [UserController::class, 'masuk'])->middleware('guest')->name('masuk');
 
 Route::get('/dashboard', function () {
     return view('dashboard.index');
@@ -27,7 +27,7 @@ Route::get('/dashboard', function () {
 Route::get('/admin', function () { return view('admin.index'); });
 
 /* Bidan */
-Route::get('/bidan', function () { return view('bidan.index'); })->middleware('auth');
+Route::get('/bidan', function () { return view('bidan.index'); })->middleware('role:bidan');
 
 /* Kepala */
 // Route::get('/bidan', function () { return view('admin'); })->middleware('checkRole:admin');

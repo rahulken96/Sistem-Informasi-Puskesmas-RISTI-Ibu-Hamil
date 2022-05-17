@@ -18,16 +18,27 @@ class CheckRole
      */
     public function handle(Request $request, Closure $next)
     {
-        // $jabatan = array_slice(func_get_args(),2);
-        // // $user = Auth::user();
+        // $roles = array_slice(func_get_args(),2);
+        // $user = Auth::user();
 
-        // foreach ($jabatan as $role) {
-        //     $user = Auth::user()->role;
-        //     if( $user == $role){
-        // return $next($request);
+        // foreach ($roles as $jabatan) {
+        //     $user = Auth::user()->jabatan;
+        //     if( $user == $jabatan){
+        //         return $next($request);
         //     }
         // }
 
-        return redirect(RouteServiceProvider::HOME);
+        if (auth()->user()->jabatan == 'admin') {
+            return $next($request);
+        }
+        if (auth()->user()->jabatan == 'bidan') {
+            return $next($request);
+        }
+        // else if (auth()->user()->jabatan == 'kepala') {
+        //     return $next($request);
+        // }
+
+        // return redirect('/masuk')->with('error','Kamu tidak mempunyai akses masuk !');
+        abort(403);
     }
 }
