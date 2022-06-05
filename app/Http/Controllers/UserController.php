@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
 class UserController extends Controller
 {
@@ -19,21 +20,30 @@ class UserController extends Controller
 
     public function masuk(Request $request)
     {
-        return $request->all();
+        // $this->validate([
+        //     'username' => 'required|string|max:255',
+        //     'password' => 'required|string|min:8',
+        // ]);
 
-        $credentials = $request->validate([
-            'username' => 'required|max:255',
-            'password' => 'required',
+        $this->validate($request, [
+            'username' => 'required|string|max:255',
+            'password' => 'required|alpha_num|min:8',
         ]);
 
+        $credentials = array(
+            'username'  => $request->get('username'),
+            'password' => $request->get('password')
+        );
 
         if (Auth::attempt($credentials)) {
+            $request->authenticate();
+
             $request->session()->regenerate();
 
-            return redirect()->intended('dashboard');
+            return redirect('/dashboard');
         }
 
-        return back()->withErrors('Login Gagal !!');
+        return back()->with('fail', 'Login Gagal !!');
         // if (auth()->attempt(array('email' => $input['email'], 'password' => $input['password']))) {
         //     if (auth()->user()->is_admin == 1) {
         //         return redirect()->route('admin.home');

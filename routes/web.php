@@ -1,6 +1,8 @@
 <?php
 
-use App\Http\Controllers\UserController;
+use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\DataPasienController;
+use App\Http\Controllers\Bidan\BidanController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,20 +16,26 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () { return view('welcome'); });
-
-Route::get('/masuk', [UserController::class, 'index'])->middleware('guest');
-Route::post('/masuk', [UserController::class, 'masuk'])->middleware('guest')->name('masuk');
-
-Route::get('/dashboard', function () {
-    return view('dashboard.index');
+Route::get('/', function () {
+    return view('welcome');
 });
 
-/* Admin */
-Route::get('/admin', function () { return view('admin.index'); });
+Route::middleware(['auth'])->group(function () {
 
-/* Bidan */
-Route::get('/bidan', function () { return view('bidan.index'); })->middleware('role:bidan');
+    /* Bidan Dashboard Routes */
+    Route::prefix('bidan/dashboard')->namespace('Bidan')->name('bidan.')->middleware('role:bidan')->group(function(){
+        Route::get('/', [BidanController::class,'index'])->name('dashboard');
 
-/* Kepala */
-// Route::get('/bidan', function () { return view('admin'); })->middleware('checkRole:admin');
+    });
+
+    /* Admin Dashboard Routes */
+    Route::prefix('admin/dashboard')->namespace('Admin')->name('admin.')->middleware('role:admin')->group(function(){
+        Route::get('/', [AdminController::class,'index'])->name('dashboard');
+        Route::get('/data-pasien', [DataPasienController::class,'index'])->name('data-pasien');
+
+    });
+
+});
+
+
+require __DIR__.'/auth.php';
