@@ -12,7 +12,7 @@
 			<div class="content">
 				<div class="page-inner">
 					<div class="page-header">
-						<h4 class="page-title">Data Pasien</h4>
+						<h4 class="page-title">Data Pengguna</h4>
 					</div>
 					<div class="col-md-12">
 						<div class="card">
@@ -31,24 +31,26 @@
 									<table id="add-row" class="display table table-striped table-hover" >
 										<thead>
 											<tr>
-												<th>Nama Pasien</th>
+												<th>Nama</th>
+												<th>Username</th>
 												<th>Usia</th>
 												<th>Alamat</th>
-												<th>Kehamilan ke</th>
-												<th style="width: 10%; align-items: center">Aksi</th>
+												<th>role</th>
+												<th style="width: 10%">Aksi</th>
 											</tr>
 										</thead>
 
 										<tbody>
-											@foreach ($pasien as $val )
+											@foreach ($user as $val )
                                             <tr>
-												<td>{{ $val->nama }}</td>
+                                                <td>{{ $val->nama }}</td>
+												<td>{{ $val->username }}</td>
 												<td>{{ $val->umur }} tahun</td>
 												<td>{{ $val->alamat }}</td>
-												<td>{{ rand(1,3) }}</td>
+												<td>{{ $val->role }}</td>
 												<td>
 													<div class="form-button-action items-center">
-														<a href= "lihat-data-valien.html" button type="button" data-toggle="tooltip" title="" class="btn btn-link btn-primary btn-lg" data-original-title="Lihat">
+														<a href= "lihat-data-pasien.html" button type="button" data-toggle="tooltip" title="" class="btn btn-link btn-primary btn-lg" data-original-title="Lihat">
 															<i class="fa fa-eye"></i>
 														</a>
 														<button type="button" data-toggle="tooltip" title="" class="btn btn-link btn-primary btn-lg" data-original-title="Edit">

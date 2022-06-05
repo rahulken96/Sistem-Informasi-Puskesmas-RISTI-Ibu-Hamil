@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Bidan;
 
 use App\Http\Controllers\Controller;
 use App\Models\Pasien;
@@ -16,7 +16,7 @@ class DataPasienController extends Controller
     public function index()
     {
         $pasien = Pasien::all();
-        return view('admin.data-pasien', compact('pasien'));
+        return view('bidan.data-pasien', compact('pasien'));
     }
 
     /**
