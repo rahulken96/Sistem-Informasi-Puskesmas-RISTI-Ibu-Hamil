@@ -15,7 +15,17 @@ class BidanController extends Controller
      */
     public function index()
     {
-        //
+        return view('bidan.index');
+    }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function dataPasien()
+    {
+        return view('bidan.index');
     }
 
     /**

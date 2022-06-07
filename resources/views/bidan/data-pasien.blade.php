@@ -4,14 +4,14 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 	<title>Bidan Dashboard</title>
 	<meta content='width=device-width, initial-scale=1.0, shrink-to-fit=no' name='viewport' />
-	<link rel="icon" href="../assets/img/icon.ico" type="image/x-icon"/>
+	<link rel="icon" href="{{ asset('assets/img/kesmas.png') }}" type="image/x-icon"/>
 
 	<!-- Fonts and icons -->
-	<script src="../assets/js/plugin/webfont/webfont.min.js"></script>
+	<script src="{{ asset('assets/js/plugin/webfont/webfont.min.js') }}"></script>
 	<script>
 		WebFont.load({
 			google: {"families":["Lato:300,400,700,900"]},
-			custom: {"families":["Flaticon", "Font Awesome 5 Solid", "Font Awesome 5 Regular", "Font Awesome 5 Brands", "simple-line-icons"], urls: ['../assets/css/fonts.min.css']},
+			custom: {"families":["Flaticon", "Font Awesome 5 Solid", "Font Awesome 5 Regular", "Font Awesome 5 Brands", "simple-line-icons"], urls: ['../../assets/css/fonts.min.css']},
 			active: function() {
 				sessionStorage.fonts = true;
 			}
@@ -19,21 +19,17 @@
 	</script>
 
 	<!-- CSS Files -->
-	<link rel="stylesheet" href="../assets/css/bootstrap.min.css">
-	<link rel="stylesheet" href="../assets/css/atlantis.min.css">
+	<link rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css') }}">
+	<link rel="stylesheet" href="{{ asset('assets/css/atlantis.min.css') }}">
 
 	<!-- CSS Just for demo purpose, don't include it in your project -->
-	<link rel="stylesheet" href="../assets/css/demo.css">
+	<link rel="stylesheet" href="{{ asset('assets/css/demo.css') }}">
 </head>
 <body>
 	<div class="wrapper">
 		<div class="main-header">
 			<!-- Logo Header -->
 			<div class="logo-header" data-background-color="blue">
-
-				<!-- <a href="index.html" class="logo">
-					<img src="../assets/img/logo.svg" alt="navbar brand" class="navbar-brand">
-				</a> -->
 				<button class="navbar-toggler sidenav-toggler ml-auto" type="button" data-toggle="collapse" data-target="collapse" aria-expanded="false" aria-label="Toggle navigation">
 					<span class="navbar-toggler-icon">
 						<i class="icon-menu"></i>
@@ -54,14 +50,14 @@
 				<div class="container-fluid">
 					<div class="collapse" id="search-nav">
 						<form class="navbar-left navbar-form nav-search mr-md-3">
-							<!-- <div class="input-group">
+							<div class="input-group">
 								<div class="input-group-prepend">
 									<button type="submit" class="btn btn-search pr-1">
 										<i class="fa fa-search search-icon"></i>
 									</button>
 								</div>
 								<input type="text" placeholder="Search ..." class="form-control">
-							</div> -->
+							</div>
 						</form>
 					</div>
 					<ul class="navbar-nav topbar-nav ml-md-auto align-items-center">
@@ -74,16 +70,20 @@
 						<li class="nav-item dropdown hidden-caret">
 							<a class="dropdown-toggle profile-pic" data-toggle="dropdown" href="#" aria-expanded="false">
 								<div class="avatar-sm">
-									<img src="../assets/img/profile.jpg" alt="..." class="avatar-img rounded-circle">
+									<img src="{{ asset('assets/img/profile.jpg') }}" alt="..." class="avatar-img rounded-circle">
 								</div>
 							</a>
 							<ul class="dropdown-menu dropdown-user animated fadeIn">
-								<div class="dropdown-user-scroll scrollbar-outer">
-                            			<a class="dropdown-item" href="#">
-                                		<i class="fa fa-sign-out fa-lg me-2" aria-hidden="true"></i>LogOut
-                            			</a>
-								</div>
-							</ul>
+                                <div class="dropdown-user-scroll scrollbar-outer">
+                                    <a href="#" class="dropdown-item"
+                                        onclick="confirm('Anda Yakin ?'); event.preventDefault(); document.getElementById('form-keluar').submit()"><i
+                                            class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>Keluar</a>
+                                    <form id="form-keluar" action="{{ route('keluar') }}" method="post"
+                                        style="display: none">
+                                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                    </form>
+                                </div>
+                            </ul>
 						</li>
 					</ul>
 				</div>
@@ -97,18 +97,16 @@
 				<div class="sidebar-content">
 					<div class="user">
 						<div class="avatar-sm float-left mr-2">
-							<img src="../assets/img/profile.jpg" alt="..." class="avatar-img rounded-circle">
+							<img src="{{ asset('assets/img/profile.jpg') }}" alt="..." class="avatar-img rounded-circle">
 						</div>
 						<div class="info">
 							<a data-toggle="collapse" href="#collapseExample" aria-expanded="true">
 								<span>
-									Bu Bidan
+									{{ Auth::user()->nama }}
 									<span class="user-level">Bidan</span>
-									<!-- <span class="caret"></span> -->
 								</span>
 							</a>
 							<div class="clearfix"></div>
-x
 							<div class="collapse in" id="collapseExample">
 
 							</div>
@@ -116,18 +114,15 @@ x
 					</div>
 					<ul class="nav nav">
 						<li class="nav-item active">
-							<a class="collapse" href="index.html" class="collapsed" aria-expanded="false">
+							<a class="collapse" href="{{ route('bidan.dashboard') }}" class="collapsed" aria-expanded="false">
 								<i class="fas fa-home"></i>
 								<p>Dashboard</p>
-								<!-- <span class="caret"></span> -->
-								<a class="collapse" href="data-pasien.html" class="collapsed" aria-expanded="false">
+								<a class="collapse" href="{{ route('bidan.pasien') }}" class="collapsed" aria-expanded="false">
 									<i class="fa fa-user "></i>
 									<p>Data Pasien</p>
-									<!-- <span class="caret"></span> -->
 								</a>
-
-
 							</a>
+                        </li>
 					</ul>
 				</div>
 			</div>
@@ -144,7 +139,7 @@ x
 						<div class="card">
 							<div class="card-header">
 								<div class="d-flex align-items-center">
-									<h4 class="card-title">Parameter Keluhan</h4>
+									<h4 class="card-title">Tambah Data</h4>
 									<button class="btn btn-primary btn-round ml-auto" data-toggle="modal" data-target="#addRowModal">
 										<i class="fa fa-plus"></i>
 										Tambah Data
@@ -152,77 +147,30 @@ x
 								</div>
 							</div>
 							<div class="card-body">
-								<!-- Modal -->
-								<div class="modal fade" id="addRowModal" tabindex="-1" role="dialog" aria-hidden="true">
-									<div class="modal-dialog" role="document">
-										<div class="modal-content">
-											<div class="modal-header no-bd">
-												<h5 class="modal-title">
-													<span class="fw-mediumbold">
-													Tambah</span>
-													<span class="fw-light">
-														Data Pasien
-													</span>
-												</h5>
-												<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-													<span aria-hidden="true">&times;</span>
-												</button>
-											</div>
-											<div class="modal-body">
-
-													<div class="row">
-														<div class="col-sm-12">
-															<div class="form-group form-group-default">
-																<label>Name</label>
-																<input id="addName" type="text" class="form-control" placeholder="fill name">
-															</div>
-														</div>
-														<div class="col-md-6 pr-0">
-															<div class="form-group form-group-default">
-																<label>Position</label>
-																<input id="addPosition" type="text" class="form-control" placeholder="fill position">
-															</div>
-														</div>
-														<div class="col-md-6">
-															<div class="form-group form-group-default">
-																<label>Office</label>
-																<input id="addOffice" type="text" class="form-control" placeholder="fill office">
-															</div>
-														</div>
-													</div>
-												</form>
-											</div>
-											<div class="modal-footer no-bd">
-												<button type="button" id="addRowButton" class="btn btn-primary">Add</button>
-												<button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-											</div>
-										</div>
-									</div>
-								</div>
 
 								<div class="table-responsive">
 									<table id="add-row" class="display table table-striped table-hover" >
 										<thead>
 											<tr>
-												<th>No.</th>
-												<th>Keluhan</th>
-												<th>Ya</th>
-												<th>Tidak</th>
-
-												<th style="width: 10%">Aksi</th>
+												<th>Nama Pasien</th>
+												<th>Usia</th>
+												<th>Alamat</th>
+												<th>Kehamilan ke</th>
+												<th style="width: 10%; align-items: center">Aksi</th>
 											</tr>
 										</thead>
 
 										<tbody>
-											<tr>
-												<td>1.</td>
-												<td>yntkts</td>
-												<td>mual</td>
-												<td>lemes pren</td>
+											@foreach ($pasien as $val )
+                                            <tr>
+												<td>{{ $val->nama }}</td>
+												<td>{{ $val->umur }} tahun</td>
+												<td>{{ $val->alamat }}</td>
+												<td>{{ rand(1,3) }}</td>
 												<td>
-													<div class="form-button-action">
-														<a href= "lihat-data-pasien.html" button type="button" data-toggle="tooltip" title="" class="btn btn-link btn-primary btn-lg" data-original-title="Lihat">
-															<i class="fa fa-eye""></i>
+													<div class="form-button-action items-center">
+														<a href= "lihat-data-valien.html" button type="button" data-toggle="tooltip" title="" class="btn btn-link btn-primary btn-lg" data-original-title="Lihat">
+															<i class="fa fa-eye"></i>
 														</a>
 														<button type="button" data-toggle="tooltip" title="" class="btn btn-link btn-primary btn-lg" data-original-title="Edit">
 															<i class="fa fa-edit"></i>
@@ -233,7 +181,7 @@ x
 													</div>
 												</td>
 											</tr>
-
+                                            @endforeach
 										</tbody>
 									</table>
 								</div>
@@ -241,17 +189,10 @@ x
 						</div>
 					</div>
 				</div>
-
 			</div>
-			<footer class="footer">
-				<div class="container-fluid">
-
-					<div class="copyright ml-auto">
-						2021, made with <i class="fa fa-heart heart text-danger"></i> by kelompok 4</a>
-					</div>
-				</div>
-			</footer>
+			@include('admin.layouts.footer')
 		</div>
+
 	</div>
 	<!--   Core JS Files   -->
 	<script src="../assets/js/core/jquery.3.2.1.min.js"></script>

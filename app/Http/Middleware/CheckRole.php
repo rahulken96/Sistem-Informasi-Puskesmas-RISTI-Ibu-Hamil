@@ -16,29 +16,17 @@ class CheckRole
      * @param  \Closure(\Illuminate\Http\Request): (\Illuminate\Http\Response|\Illuminate\Http\RedirectResponse)  $next
      * @return \Illuminate\Http\Response|\Illuminate\Http\RedirectResponse
      */
-    public function handle(Request $request, Closure $next)
+    public function handle(Request $request, Closure $next, string $role)
     {
-        // $roles = array_slice(func_get_args(),2);
-        // $user = Auth::user();
-
-        // foreach ($roles as $jabatan) {
-        //     $user = Auth::user()->jabatan;
-        //     if( $user == $jabatan){
-        //         return $next($request);
-        //     }
-        // }
-
-        if (auth()->user()->jabatan == 'admin') {
-            return $next($request);
+        if ($role == 'admin' && auth()->user()->role != 'admin' ) {
+            abort(403, 'Akses ditolak !');
         }
-        if (auth()->user()->jabatan == 'bidan') {
-            return $next($request);
+        if ($role == 'bidan' && auth()->user()->role != 'bidan' ) {
+            abort(403, 'Akses ditolak !');
         }
-        // else if (auth()->user()->jabatan == 'kepala') {
-        //     return $next($request);
-        // }
-
-        // return redirect('/masuk')->with('error','Kamu tidak mempunyai akses masuk !');
-        abort(403);
+        if ($role == 'kepala' && auth()->user()->role != 'kepala' ) {
+            abort(403, 'Akses ditolak !');
+        }
+        return $next($request);
     }
 }

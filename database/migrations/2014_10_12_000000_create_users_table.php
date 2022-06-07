@@ -19,11 +19,12 @@ class CreateUsersTable extends Migration
             $table->string('username')->unique();
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
-            $table->string('password')->nullable();
-            $table->string('alamat')->nullable();
-            $table->integer('umur')->unsigned();
-            $table->string('jabatan')->default('admin');
-            // $table->enum('role',['admin','bidan'])->default('admin');
+            $table->string('password');
+            $table->string('alamat');
+            $table->integer('umur');
+            // $table->string('jabatan')->default('admin');
+            $table->string('role')->default('admin');
+            // $table->enum('role',['admin','bidan','kepala'])->default('admin');
             $table->rememberToken();
             $table->timestamps();
         });

@@ -8,4 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class Bidan extends Model
 {
     use HasFactory;
+
+    protected $guard = [];
 }
