@@ -19,15 +19,13 @@
 							<div class="card-header">
 								<div class="d-flex align-items-center">
 									<h4 class="card-title">Tambah Data</h4>
-									<button class="btn btn-primary btn-round ml-auto" data-toggle="modal" data-target="#addRowModal">
+									<button class="btn btn-primary btn-round ml-auto" href="admin.tambah-data.pasien"   >
 										<i class="fa fa-plus"></i>
 										Tambah Data
 									</button>
 								</div>
 							</div>
 							<div class="card-body">
-
-								<div class="table-responsive">
 									<table id="add-row" class="display table table-striped table-hover" >
 										<thead>
 											<tr>
