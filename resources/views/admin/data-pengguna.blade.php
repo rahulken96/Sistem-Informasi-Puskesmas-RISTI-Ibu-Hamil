@@ -19,7 +19,7 @@
 							<div class="card-header">
 								<div class="d-flex align-items-center">
 									<h4 class="card-title">Tambah Data</h4>
-									<button class="btn btn-primary btn-round ml-auto" data-toggle="modal" data-target="#addRowModal">
+									<button class="btn btn-primary btn-round ml-auto" href="admin.tambah.data.pengguna" data-toggle="modal" >
 										<i class="fa fa-plus"></i>
 										Tambah Data
 									</button>
