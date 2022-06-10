@@ -16,7 +16,6 @@
 							<div class="card-header">
 								<div class="d-flex align-items-center">
 									<h4 class="card-title">Tambah Data Pengguna</h4>
-
                                 </div>
 							</div>
 							<div class="card-body">
@@ -32,12 +31,28 @@
                                             <input type="text" class="form-control form-control" id="defaultInput" placeholder="Username..">
                                         </div>
                                         <div class="form-group">
+                                            <label for="largeInput">E-mail</label>
+                                            <input type="text" class="form-control form-control" id="defaultInput" placeholder="Usia..">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="largeInput">Password</label>
+                                            <input type="text" class="form-control form-control" id="defaultInput" placeholder="Usia..">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="largeInput">Alamat</label>
+                                            <input type="text" class="form-control form-control" id="defaultInput" placeholder="Usia..">
+                                        </div>
+                                        <div class="form-group">
                                             <label for="largeInput">Usia</label>
                                             <input type="text" class="form-control form-control" id="defaultInput" placeholder="Usia..">
                                         </div>
                                         <div class="form-group">
-                                            <label for="largeInput">Role</label>
-                                            <input type="number" class="form-control form-control" id="defaultInput" placeholder="Role..">
+                                            <label for="largeInput">Role / Jabatan</label>
+                                            <select name="role" id="" class="form-control select2" required>
+                                                <option value="" disabled selected>-- Pilih --</option>
+                                                <option value="1">Bidan</option>
+                                                <option value="2">Kepala</option>
+                                            </select>
                                         </div>
                                             <div class="card-action">
                                                 <button class="btn btn-success">Submit</button>

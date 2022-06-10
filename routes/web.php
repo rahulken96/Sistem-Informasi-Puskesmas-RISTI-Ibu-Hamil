@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\DataPasienController as AdminPasien;
+use App\Http\Controllers\Admin\DataPenggunaController;
+use App\Http\Controllers\Auth\RedirectAuthenticatedUsersController;
 use App\Http\Controllers\Bidan\BidanController;
 use App\Http\Controllers\Bidan\DataPasienController as BidanPasien;
 use Illuminate\Support\Facades\Route;
@@ -29,17 +31,22 @@ Route::get('/test2', function () {
 
 Route::middleware(['auth'])->group(function () {
 
+    Route::get("/redirectAuthenticatedUsers", [RedirectAuthenticatedUsersController::class, 'home']);
+
     /* Bidan Dashboard Routes */
-    Route::prefix('bidan/dashboard')->namespace('Bidan')->name('bidan.')->middleware('role:bidan')->group(function(){
+    Route::prefix('bidan/dashboard')->name('bidan.')->middleware('role:bidan')->group(function(){
         Route::get('/', [BidanController::class, 'index'])->name('dashboard');
         Route::get('/data-pasien', [BidanPasien::class, 'index'])->name('pasien');
 
     });
 
     /* Admin Dashboard Routes */
-    Route::prefix('admin/dashboard')->namespace('Admin')->name('admin.')->middleware('role:admin')->group(function(){
+    Route::prefix('admin/dashboard')->name('admin.')->middleware('role:admin')->group(function(){
         Route::get('/', [AdminController::class, 'index'])->name('dashboard');
-        Route::get('/data-pengguna', [AdminController::class, 'dataPengguna'])->name('pengguna');
+
+        /* Data Pengguna */
+        Route::resource('data-pengguna', DataPenggunaController::class);
+
         Route::get('/data-pasien', [AdminPasien::class, 'index'])->name('pasien');
 
     });

@@ -4,6 +4,7 @@
 		<!-- Navbar Header -->
         @include('admin.layouts.navbar')
 		<!-- End Navbar -->
+
 		<!-- Sidebar -->
 		@include('admin.layouts.sidebar')
 		<!-- End Sidebar -->
@@ -19,10 +20,7 @@
 							<div class="card-header">
 								<div class="d-flex align-items-center">
 									<h4 class="card-title">Tambah Data</h4>
-									<button class="btn btn-primary btn-round ml-auto" href="admin.tambah.data.pengguna" data-toggle="modal" >
-										<i class="fa fa-plus"></i>
-										Tambah Data
-									</button>
+                                    <a href="{{ route('admin.data-pengguna.create') }}" class="btn btn-primary btn-round ml-auto" data-toggle="modal"><i class="fa fa-plus"></i> Tambah Data</a>
 								</div>
 							</div>
 							<div class="card-body">

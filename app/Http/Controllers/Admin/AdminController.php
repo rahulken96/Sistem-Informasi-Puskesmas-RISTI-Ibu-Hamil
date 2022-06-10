@@ -11,12 +11,6 @@ class AdminController extends Controller
 {
     public function index()
     {
-        return view('admin.index');
-    }
-
-    public function dataPengguna()
-    {
-        $user = DB::table('users')->whereIn('role', ['bidan','kepala'])->orderBy('nama')->get();
-        return view('admin.data-pengguna', compact('user'));
+        return view('admin.index')->with('success','Anda Berhasil Masuk !');
     }
 }
