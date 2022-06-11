@@ -24,7 +24,11 @@
 								</div>
 							</div>
 							<div class="card-body">
-
+                                @if ($pesan = session('success'))
+                                    <div class="alert alert-success" role="alert">
+                                        <Strong>{{ $pesan }}</Strong>
+                                    </div>
+                                @endif
 								<div class="table-responsive">
 									<table id="add-row" class="display table table-striped table-hover" >
 										<thead>
