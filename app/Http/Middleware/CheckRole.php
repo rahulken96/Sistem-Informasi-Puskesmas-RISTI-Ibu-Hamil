@@ -18,6 +18,8 @@ class CheckRole
      */
     public function handle(Request $request, Closure $next, string $role)
     {
+        $result = explode('_', $request->jabatan )[0];
+
         if ($role == 'admin' && auth()->user()->role != 'admin' ) {
             abort(403, 'Akses ditolak !');
         }

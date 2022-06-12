@@ -23,7 +23,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 Route::get('/test', function () {
-    return view('admin.tambah-data-pasien');
+    return view('admin.tambah-data-pengguna');
 });
 Route::get('/test2', function () {
     return view('admin.tambah-data-pengguna');

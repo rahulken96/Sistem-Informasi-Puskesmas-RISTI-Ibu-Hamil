@@ -77,9 +77,10 @@ class DataPenggunaController extends Controller
      * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function show(User $user)
+    public function show($id)
     {
-        //
+        $user = DB::table('users')->where('id',$id)->get();
+        return view('admin.lihat-data-pengguna', compact('user'));
     }
 
     /**

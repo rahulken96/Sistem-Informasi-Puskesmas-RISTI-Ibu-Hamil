@@ -22,8 +22,9 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->string('alamat');
             $table->integer('umur');
+            $table->unsignedBigInteger('role')->nullable();
+            // $table->foreign('role')->references('id')->on('roles');
             // $table->string('jabatan')->default('admin');
-            $table->string('role')->default('admin');
             // $table->enum('role',['admin','bidan','kepala'])->default('admin');
             $table->rememberToken();
             $table->timestamps();

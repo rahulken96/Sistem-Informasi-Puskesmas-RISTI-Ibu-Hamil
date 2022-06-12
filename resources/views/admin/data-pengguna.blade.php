@@ -51,17 +51,21 @@
 												<td>{{ $val->alamat }}</td>
 												<td>{{ $val->role }}</td>
 												<td>
-													<div class="form-button-action items-center">
-														<a href= "lihat-data-pasien.html" button type="button" data-toggle="tooltip" title="" class="btn btn-link btn-primary btn-lg" data-original-title="Lihat">
-															<i class="fa fa-eye"></i>
-														</a>
-														<button type="button" data-toggle="tooltip" title="" class="btn btn-link btn-primary btn-lg" data-original-title="Edit">
-															<i class="fa fa-edit"></i>
-														</button>
-														<button type="button" data-toggle="tooltip" title="" class="btn btn-link btn-danger" data-original-title="Hapus">
-															<i class="fa fa-times"></i>
-														</button>
-													</div>
+                                                    <form action="{{ route('admin.data-pengguna.destroy', $val->id) }}" method="POST" class="custom-validation">
+                                                        <div class="form-button-action items-center">
+                                                            <a href= "{{ route('admin.data-pengguna.show', $val->id) }}" button type="button" data-toggle="tooltip" title="Lihat Data" class="btn btn-link btn-primary btn-lg" data-original-title="Lihat">
+                                                                <i class="fa fa-eye"></i>
+                                                            </a>
+                                                            <button type="button" data-toggle="tooltip" title="" class="btn btn-link btn-primary btn-lg" data-original-title="Edit">
+                                                                <i class="fa fa-edit"></i>
+                                                            </button>
+                                                            @method('DELETE')
+                                                            @csrf
+                                                            <button type="button" data-toggle="tooltip" title="" class="btn btn-link btn-danger" data-original-title="Hapus">
+                                                                <i class="fa fa-times"></i>
+                                                            </button>
+                                                        </div>
+                                                    </form>
 												</td>
 											</tr>
                                             @endforeach
