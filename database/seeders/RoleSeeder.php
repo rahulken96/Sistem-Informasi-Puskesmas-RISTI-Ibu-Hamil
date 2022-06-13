@@ -22,13 +22,13 @@ class RoleSeeder extends Seeder
                 'jabatan' => 'bidan',
             ],
             [
-                'jabatan' => 'kepala_puskesmas',
+                'jabatan' => 'kepala puskesmas',
             ],
             [
-                'jabatan' => 'kepala_desa',
+                'jabatan' => 'kepala desa',
             ],
             [
-                'jabatan' => 'kepala_kecamatan',
+                'jabatan' => 'kepala kecamatan',
             ],
         ];
 

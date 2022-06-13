@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\DataPenggunaController;
 use App\Http\Controllers\Auth\RedirectAuthenticatedUsersController;
 use App\Http\Controllers\Bidan\BidanController;
 use App\Http\Controllers\Bidan\DataPasienController as BidanPasien;
+use App\Models\Role;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
@@ -24,14 +25,16 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
 Route::get('/test', function () {
-    $user = User::where('umur', '24')->get();
-    foreach ($user as $key => $value) {
-        $value[$value->id];
-    }
+    $user = Role::where('id', '3')->get();
+    // foreach ($user as $key => $value) {
+    //     $value[$value->id];
+    // }
     // getRoles($user);
-    return getRoles($value->role);
+    return ($user);
 });
+
 Route::get('/test2', function () {
     return view('admin.tambah-data-pengguna');
 });
@@ -39,13 +42,6 @@ Route::get('/test2', function () {
 Route::middleware(['auth'])->group(function () {
 
     Route::get("/redirectAuthenticatedUsers", [RedirectAuthenticatedUsersController::class, 'home']);
-
-    /* Bidan Dashboard Routes */
-    Route::prefix('bidan/dashboard')->name('bidan.')->middleware('role:bidan')->group(function(){
-        Route::get('/', [BidanController::class, 'index'])->name('dashboard');
-        Route::get('/data-pasien', [BidanPasien::class, 'index'])->name('pasien');
-
-    });
 
     /* Admin Dashboard Routes */
     Route::prefix('admin/dashboard')->name('admin.')->middleware('role:admin')->group(function(){
@@ -55,6 +51,13 @@ Route::middleware(['auth'])->group(function () {
         Route::resource('data-pengguna', DataPenggunaController::class);
 
         Route::get('/data-pasien', [AdminPasien::class, 'index'])->name('pasien');
+
+    });
+
+    /* Bidan Dashboard Routes */
+    Route::prefix('bidan/dashboard')->name('bidan.')->middleware('role:bidan')->group(function(){
+        Route::get('/', [BidanController::class, 'index'])->name('dashboard');
+        Route::get('/data-pasien', [BidanPasien::class, 'index'])->name('pasien');
 
     });
 
