@@ -21,7 +21,9 @@ class DataPenggunaController extends Controller
      */
     public function index()
     {
-        $user = DB::table('users')->whereIn('role', ['bidan','kepala'])->orderBy('role')->get();
+        // $user = DB::table('users')->whereIn('role', ['bidan','kepala'])->orderBy('role')->get();
+        // return view('admin.data-pengguna', compact('user'));
+        $user = User::where('role', 'admin')->get();
         return view('admin.data-pengguna', compact('user'));
 
     }

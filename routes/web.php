@@ -6,6 +6,8 @@ use App\Http\Controllers\Admin\DataPenggunaController;
 use App\Http\Controllers\Auth\RedirectAuthenticatedUsersController;
 use App\Http\Controllers\Bidan\BidanController;
 use App\Http\Controllers\Bidan\DataPasienController as BidanPasien;
+use App\Models\User;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -23,7 +25,12 @@ Route::get('/', function () {
     return view('welcome');
 });
 Route::get('/test', function () {
-    return view('admin.tambah-data-pengguna');
+    $user = User::where('umur', '24')->get();
+    foreach ($user as $key => $value) {
+        $value[$value->id];
+    }
+    // getRoles($user);
+    return getRoles($value->role);
 });
 Route::get('/test2', function () {
     return view('admin.tambah-data-pengguna');
