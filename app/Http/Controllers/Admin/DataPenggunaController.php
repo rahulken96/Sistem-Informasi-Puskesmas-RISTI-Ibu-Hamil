@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Role;
 use App\Models\User;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Auth\Events\Registered;
@@ -21,11 +22,8 @@ class DataPenggunaController extends Controller
      */
     public function index()
     {
-        // $user = DB::table('users')->whereIn('role', ['bidan','kepala'])->orderBy('role')->get();
-        // return view('admin.data-pengguna', compact('user'));
-        $user = User::where('role', 'admin')->get();
+        $user = DB::table('users')->whereIn('role', ['2','3','4','5'])->orderBy('role')->get();
         return view('admin.data-pengguna', compact('user'));
-
     }
 
     /**
@@ -35,7 +33,8 @@ class DataPenggunaController extends Controller
      */
     public function create()
     {
-        return view('admin.tambah-data-pengguna');
+        $roles = Role::all()->except('1');
+        return view('admin.tambah-data-pengguna',compact('roles'));
     }
 
     /**
@@ -56,8 +55,6 @@ class DataPenggunaController extends Controller
             'jabatan' => 'required',
         ]);
 
-        $role = explode('_', $request->jabatan )[0];
-
         User::create([
             'nama' => $request->namaPengguna,
             'username' => $request->username,
@@ -65,7 +62,7 @@ class DataPenggunaController extends Controller
             'password' => Hash::make($request->password),
             'alamat' => $request->alamatPengguna,
             'umur' => $request->umur,
-            'role' => $role,
+            'role' => $request->jabatan,
         ]);
 
         return redirect(route('admin.data-pengguna.index'))->with([
@@ -81,8 +78,9 @@ class DataPenggunaController extends Controller
      */
     public function show($id)
     {
-        $user = DB::table('users')->where('id',$id)->get();
-        return view('admin.lihat-data-pengguna', compact('user'));
+        $roles = Role::all()->except('1');
+        $user = User::where('id',$id)->get();
+        return view('admin.lihat-data-pengguna', compact('user','roles'));
     }
 
     /**
@@ -91,9 +89,11 @@ class DataPenggunaController extends Controller
      * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function edit(User $user)
+    public function edit($id)
     {
-        //
+        $roles = Role::all()->except('1');
+        $user = User::where('id',$id)->get();
+        return view('admin.edit-data-pengguna', compact('user','roles'));
     }
 
     /**
@@ -103,9 +103,32 @@ class DataPenggunaController extends Controller
      * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, User $user)
+    public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'namaPengguna' => 'required|string|max:255',
+            'username' => 'required|string|max:255|unique:users,username',
+            'alamatPengguna' => 'required|string|max:255',
+            'umur' => 'required|numeric|min:18|max:100',
+            'emailPengguna' => 'required|string|email|max:255|email:rfc,dns',
+            'password' => ['required', 'confirmed', 'string' , Rules\Password::defaults(), 'max:20'],
+            'jabatan' => 'required',
+        ]);
+
+        User::find($id)->update([
+            'nama' => $request->namaPengguna,
+            'username' => $request->username,
+            'email' => $request->emailPengguna,
+            'password' => Hash::make($request->password),
+            'alamat' => $request->alamatPengguna,
+            'umur' => $request->umur,
+            'role' => $request->jabatan,
+            'remember_token' => $request->_token,
+        ]);
+
+        return redirect(route('admin.data-pengguna.index'))->with([
+            'success' => 'Data Berhasil Diubah !!'
+        ]);
     }
 
     /**
@@ -114,8 +137,11 @@ class DataPenggunaController extends Controller
      * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function destroy(User $user)
+    public function destroy($id)
     {
-        //
+        User::destroy($id);
+        return redirect(route('admin.data-pengguna.index'))->with([
+            'success' => 'Data Berhasil Dihapus !!'
+        ]);
     }
 }

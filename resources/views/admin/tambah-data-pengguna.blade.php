@@ -115,39 +115,16 @@
                                             </div>
                                             <div class="form-group">
                                                 <label for="largeInput">Jabatan</label>
-                                                <select name="jabatan" id=""
-                                                    class="form-control @error('jabatan') is-invalid @enderror select2">
-                                                    @if (old('jabatan') == 'bidan')
-                                                        <option value="" disabled>-- Pilih --</option>
-                                                        <option value="bidan" selected>Bidan</option>
-                                                        <option value="kepala_pus">Kepala Puseksesmas</option>
-                                                        <option value="kepala_des">Kepala Desa</option>
-                                                        <option value="kepala_cam">Kepala Kecamatan</option>
-                                                    @elseif (old('jabatan') == 'kepala_pus')
-                                                        <option value="" disabled >-- Pilih --</option>
-                                                        <option value="bidan">Bidan</option>
-                                                        <option value="kepala_pus" selected>Kepala Puseksesmas</option>
-                                                        <option value="kepala_des">Kepala Desa</option>
-                                                        <option value="kepala_cam">Kepala Kecamatan</option>
-                                                    @elseif (old('jabatan') == 'kepala_des')
-                                                        <option value="" disabled >-- Pilih --</option>
-                                                        <option value="bidan">Bidan</option>
-                                                        <option value="kepala_pus">Kepala Puseksesmas</option>
-                                                        <option value="kepala_des" selected>Kepala Desa</option>
-                                                        <option value="kepala_cam">Kepala Kecamatan</option>
-                                                    @elseif (old('jabatan') == 'kepala_cam')
-                                                        <option value="" disabled >-- Pilih --</option>
-                                                        <option value="bidan">Bidan</option>
-                                                        <option value="kepala_pus">Kepala Puseksesmas</option>
-                                                        <option value="kepala_des" >Kepala Desa</option>
-                                                        <option value="kepala_cam" selected>Kepala Kecamatan</option>
-                                                    @else
-                                                        <option value="" disabled selected>-- Pilih --</option>
-                                                        <option value="bidan">Bidan</option>
-                                                        <option value="kepala_pus">Kepala Puseksesmas</option>
-                                                        <option value="kepala_des">Kepala Desa</option>
-                                                        <option value="kepala_cam">Kepala Kecamatan</option>
-                                                    @endif
+                                                <select name="jabatan" id="jabatan" class="form-control @error('jabatan') is-invalid @enderror select2">
+                                                    <option value="" disabled selected>-- Pilih --</option>
+
+                                                    @foreach ($roles as $role)
+                                                        @if (old('jabatan') == $role->id)
+                                                            <option value="{{ $role->id }}" selected>{{ $role->jabatan }}</option>
+                                                        @else
+                                                            <option value="{{ $role->id }}">{{ $role->jabatan }}</option>
+                                                        @endif
+                                                    @endforeach
 
                                                 </select>
                                                 @error('jabatan')
@@ -160,7 +137,7 @@
                                     </div>
                                     <div class="card-action">
                                         <button type="submit" class="btn btn-info">Simpan</button>
-                                        <a class="btn btn-danger" data-toggle="collapse" href="{{ route('admin.data-pengguna.index') }}" role="button" aria-expanded="false" aria-controls="collapseExample">Batal</a>
+                                        <a class="btn btn-outline-danger" data-toggle="collapse" href="{{ route('admin.data-pengguna.index') }}" role="button" aria-expanded="false" aria-controls="collapseExample">Batal</a>
                                     </div>
                                 </div>
                             </form>

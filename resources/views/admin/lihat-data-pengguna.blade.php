@@ -91,54 +91,13 @@
 
                                         <div class="form-group">
                                             <label for="largeInput">Jabatan</label>
-                                            <select name="jabatan" id=""
-                                                class="form-control-plaintext text-monospace @error('jabatan') is-invalid @enderror select2">
-                                                @if (old('jabatan') == 'bidan')
-                                                    <option value="" disabled>-- Pilih --</option>
-                                                    <option value="bidan" selected>Bidan</option>
-                                                    <option value="kepala_pus">Kepala Puskesmas</option>
-                                                    <option value="kepala_des">Kepala Desa</option>
-                                                    <option value="kepala_cam">Kepala Kecamatan</option>
-                                                @elseif (old('jabatan') == 'kepala_pus')
-                                                    <option value="" disabled>-- Pilih --</option>
-                                                    <option value="bidan">Bidan</option>
-                                                    <option value="kepala_pus" selected>Kepala Puskesmas</option>
-                                                    <option value="kepala_des">Kepala Desa</option>
-                                                    <option value="kepala_cam">Kepala Kecamatan</option>
-                                                @elseif (old('jabatan') == 'kepala_des')
-                                                    <option value="" disabled>-- Pilih --</option>
-                                                    <option value="bidan">Bidan</option>
-                                                    <option value="kepala_pus">Kepala Puskesmas</option>
-                                                    <option value="kepala_des" selected>Kepala Desa</option>
-                                                    <option value="kepala_cam">Kepala Kecamatan</option>
-                                                @elseif (old('jabatan') == 'kepala_cam')
-                                                    <option value="" disabled>-- Pilih --</option>
-                                                    <option value="bidan">Bidan</option>
-                                                    <option value="kepala_pus">Kepala Puskesmas</option>
-                                                    <option value="kepala_des">Kepala Desa</option>
-                                                    <option value="kepala_cam" selected>Kepala Kecamatan</option>
-                                                @else
-                                                    <option value="" disabled selected>-- Pilih --</option>
-                                                    <option value="bidan">Bidan</option>
-                                                    <option value="kepala_pus">Kepala Puskesmas</option>
-                                                    <option value="kepala_des">Kepala Desa</option>
-                                                    <option value="kepala_cam">Kepala Kecamatan</option>
-                                                @endif
-
-                                            </select>
-                                            @error('jabatan')
-                                                <span class="invalid-feedback" role="alert">
-                                                    <strong>{{ $message }}</strong>
-                                                </span>
-                                            @enderror
+                                            <input name="emailPengguna" type="text" class="form-control-plaintext text-monospace @error('emailPengguna') is-invalid @enderror" value="{{ getRoles($val->role) }}" disabled>
                                         </div>
 
                                     </div>
                                 </div>
                                 <div class="card-action">
-                                    <a class="btn btn-outline-info" data-toggle="collapse"
-                                        href="{{ route('admin.data-pengguna.index') }}" role="button"
-                                        aria-expanded="false" aria-controls="collapseExample">Keluar</a>
+                                    <a class="btn btn-outline-info" data-toggle="collapse" href="{{ route('admin.data-pengguna.index') }}" role="button" aria-expanded="false" aria-controls="collapseExample">Keluar</a>
                                 </div>
                             </div>
                             @endforeach
