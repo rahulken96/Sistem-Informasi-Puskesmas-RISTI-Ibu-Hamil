@@ -17,7 +17,7 @@
                             <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink" style="right: 0; left: auto;">
                                 @if (Auth::user()->role)
                                     <li>
-                                        <a href="{{ route(Auth::user()->role . '.dashboard') }}"
+                                        <a href="{{ route(getRoles(Auth::user()->role) . '.dashboard') }}"
                                             class="dropdown-item">Dashboard</a>
                                     </li>
                                 @endif

@@ -18,14 +18,15 @@ class CheckRole
      */
     public function handle(Request $request, Closure $next, string $role)
     {
-        if ($role == 'admin' && auth()->user()->role != 'admin' ) {
-            abort(403, 'Akses ditolak !');
+
+        if ($role == 'admin' && auth()->user()->role != '1' ) {
+            abort(403, 'Akses Ditolak !');
         }
-        if ($role == 'bidan' && auth()->user()->role != 'bidan' ) {
-            abort(403, 'Akses ditolak !');
+        if ($role == 'bidan' && auth()->user()->role != '2' ) {
+            abort(403, 'Akses Ditolak !');
         }
-        if ($role == 'kepala' && auth()->user()->role != 'kepala' ) {
-            abort(403, 'Akses ditolak !');
+        if ($role == 'kepala' && ( auth()->user()->role != '3' || auth()->user()->role != '4' || auth()->user()->role != '5' )) {
+            abort(403, 'Akses Ditolak !');
         }
         return $next($request);
     }

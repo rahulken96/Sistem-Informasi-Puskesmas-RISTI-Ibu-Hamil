@@ -38,7 +38,7 @@
 
     <link rel="stylesheet" href="{{ asset('assets1/css/font-awesome.min.css') }}">
 
-    {{-- <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css') }}"> --}}
+    <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets1/css/bootstrap/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets1/css/bootstrap/style.css') }}">
 
