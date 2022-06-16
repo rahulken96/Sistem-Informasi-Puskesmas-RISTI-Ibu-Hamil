@@ -10,4 +10,10 @@ class Pasien extends Model
     use HasFactory;
 
     protected $guarded = ['id'];
+
+    protected $hidden = [
+        'password',
+        'remember_token',
+        '_token',
+    ];
 }
