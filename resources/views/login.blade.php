@@ -72,10 +72,12 @@
                     </div>
                     <div class="form-group d-md-flex">
                         <div class="w-50">
-                            <label class="checkbox-wrap checkbox-primary">Ingat Saya
-                                <input type="checkbox" checked>
-                                <span class="checkmark"></span>
-                            </label>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked">
+                                <label class="form-check-label" for="flexCheckChecked">
+                                  Ingat Saya
+                                </label>
+                              </div>
                         </div>
                         <div class="w-50 text-md-right">
                             <a href="#">Lupa Password</a>

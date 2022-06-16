@@ -4,6 +4,7 @@
 		<!-- Navbar Header -->
         @include('admin.layouts.navbar')
 		<!-- End Navbar -->
+
 		<!-- Sidebar -->
 		@include('admin.layouts.sidebar')
 		<!-- End Sidebar -->
@@ -19,14 +20,15 @@
 							<div class="card-header">
 								<div class="d-flex align-items-center">
 									<h4 class="card-title">Tambah Data</h4>
-									<button class="btn btn-primary btn-round ml-auto" href="admin.tambah.data.pengguna" data-toggle="modal" >
-										<i class="fa fa-plus"></i>
-										Tambah Data
-									</button>
+                                    <a href="{{ route('admin.data-pengguna.create') }}" class="btn btn-primary btn-round ml-auto" data-toggle="modal"><i class="fa fa-plus"></i> Tambah Data</a>
 								</div>
 							</div>
+                            @if ($pesan = session('success'))
+                                <div class="alert alert-success bg-success text-white alert-dismissible fade show col-2" role="alert">
+                                    <Strong>{{ $pesan }}</Strong>
+                                </div>
+                            @endif
 							<div class="card-body">
-
 								<div class="table-responsive">
 									<table id="add-row" class="display table table-striped table-hover" >
 										<thead>
@@ -47,19 +49,23 @@
 												<td>{{ $val->username }}</td>
 												<td>{{ $val->umur }} tahun</td>
 												<td>{{ $val->alamat }}</td>
-												<td>{{ $val->role }}</td>
+												<td>{{ getRoles($val->role) }}</td>
 												<td>
-													<div class="form-button-action items-center">
-														<a href= "lihat-data-pasien.html" button type="button" data-toggle="tooltip" title="" class="btn btn-link btn-primary btn-lg" data-original-title="Lihat">
-															<i class="fa fa-eye"></i>
-														</a>
-														<button type="button" data-toggle="tooltip" title="" class="btn btn-link btn-primary btn-lg" data-original-title="Edit">
-															<i class="fa fa-edit"></i>
-														</button>
-														<button type="button" data-toggle="tooltip" title="" class="btn btn-link btn-danger" data-original-title="Hapus">
-															<i class="fa fa-times"></i>
-														</button>
-													</div>
+                                                    <form action="{{ route('admin.data-pengguna.destroy', $val->id) }}" method="POST" class="custom-validation">
+                                                        <div class="form-button-action items-center">
+                                                            <a href= "{{ route('admin.data-pengguna.show', $val->id) }}" type="button" data-toggle="tooltip" title="Lihat Data" class="btn btn-link btn-primary btn-lg" data-original-title="Lihat">
+                                                                <i class="fa fa-eye"></i>
+                                                            </a>
+                                                            <a href= "{{ route('admin.data-pengguna.edit', $val->id) }}" type="button" data-toggle="tooltip" title="Ubah Data" class="btn btn-link btn-primary btn-lg" data-original-title="Ubah">
+                                                                <i class="fa fa-edit"></i>
+                                                            </a>
+                                                            @method('DELETE')
+                                                            @csrf
+                                                            <button type="submit" data-toggle="tooltip" title="Hapus Data" class="btn btn-link btn-danger" data-original-title="Hapus">
+                                                                <i class="fa fa-times"></i>
+                                                            </button>
+                                                        </div>
+                                                    </form>
 												</td>
 											</tr>
                                             @endforeach

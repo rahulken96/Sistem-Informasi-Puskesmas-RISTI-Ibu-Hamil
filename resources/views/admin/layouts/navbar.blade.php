@@ -46,7 +46,7 @@
                     </a>
                     <ul class="dropdown-menu dropdown-user animated fadeIn">
                         <div class="dropdown-user-scroll scrollbar-outer">
-                            <a href="#" class="dropdown-item"
+                            <a href=" " class="dropdown-item"
                                 onclick="confirm('Anda Yakin ?'); event.preventDefault(); document.getElementById('form-keluar').submit()"><i
                                     class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>Keluar</a>
                             <form id="form-keluar" action="{{ route('keluar') }}" method="post" style="display: none">
