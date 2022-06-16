@@ -29,7 +29,7 @@ x
                             <p>Data Pengguna</p>
                         </a>
 
-                        <a class="collapse" href="{{ route('admin.pasien') }}" class="collapsed" aria-expanded="false">
+                        <a class="collapse" href="{{ route('admin.data-pasien.index') }}" class="collapsed" aria-expanded="false">
                             <i class="fa fa-user "></i>
                             <p>Data Pasien</p>
                         </a>

@@ -18,7 +18,17 @@
 						<div class="card">
 							<div class="card-header">
 								<div class="d-flex align-items-center">
-									<h4 class="card-title">Tambah Data</h4>
+
+                                    <nav class="navbar navbar-light">
+                                        <div class="container-fluid">
+                                          <form class="d-md-flex" action="{{ route('admin.data-pasien.index') }}" method="get">
+                                            @csrf
+                                            <input class="form-control me-3" name="cari" type="search" placeholder="Cari Data Pasien .." aria-label="Search">
+                                            <button class="btn btn-outline-success ml-3" type="submit">Cari</button>
+                                          </form>
+                                        </div>
+                                      </nav>
+
 									<button class="btn btn-primary btn-round ml-auto" href="admin.tambah-data.pasien"   >
 										<i class="fa fa-plus"></i>
 										Tambah Data

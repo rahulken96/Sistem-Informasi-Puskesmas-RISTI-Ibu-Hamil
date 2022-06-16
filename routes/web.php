@@ -50,8 +50,9 @@ Route::middleware(['auth'])->group(function () {
         /* Data Pengguna */
         Route::resource('data-pengguna', DataPenggunaController::class);
 
-        Route::get('/data-pasien', [AdminPasien::class, 'index'])->name('pasien');
-
+        /* Data Pasien */
+        Route::resource('data-pasien', AdminPasien::class);
+        // Route::get('data-pasien/cari', AdminPasien::class, 'cari')->name('pasien_cari');
     });
 
     /* Bidan Dashboard Routes */

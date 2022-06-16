@@ -20,9 +20,17 @@ class DataPenggunaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $user = DB::table('users')->whereIn('role', ['2','3','4','5'])->orderBy('role')->get();
+        if (isset($request->cari)) {
+            
+            $cari = $request->cari;
+            $user = User::where('nama','like',"%".$cari."%")->paginate();
+
+            return view('admin.data-pengguna', compact('user'));
+        }
+
+        $user = User::whereIn('role', ['2','3','4','5'])->orderBy('role')->get();
         return view('admin.data-pengguna', compact('user'));
     }
 
