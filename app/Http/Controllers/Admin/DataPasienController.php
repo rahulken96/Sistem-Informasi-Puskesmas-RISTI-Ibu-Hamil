@@ -8,13 +8,26 @@ use Illuminate\Http\Request;
 
 class DataPasienController extends Controller
 {
+
+    // public function cari(Request $request)
+    // {
+    //     return $request;
+    // }
+
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
+        if (isset($request->cari)) {
+            $cari = $request->cari;
+            $pasien = Pasien::where('nama','like',"%".$cari."%")->paginate();
+
+            return view('admin.data-pasien', compact('pasien'));
+        }
+
         $pasien = Pasien::all();
         return view('admin.data-pasien', compact('pasien'));
     }

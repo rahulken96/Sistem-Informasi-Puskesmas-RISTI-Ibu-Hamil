@@ -2,8 +2,13 @@
 
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\DataPasienController as AdminPasien;
+use App\Http\Controllers\Admin\DataPenggunaController;
+use App\Http\Controllers\Auth\RedirectAuthenticatedUsersController;
 use App\Http\Controllers\Bidan\BidanController;
 use App\Http\Controllers\Bidan\DataPasienController as BidanPasien;
+use App\Models\Role;
+use App\Models\User;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,27 +25,40 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
 Route::get('/test', function () {
-    return view('admin.tambah-data-pasien');
+    $user = Role::where('id', '3')->get();
+    // foreach ($user as $key => $value) {
+    //     $value[$value->id];
+    // }
+    // getRoles($user);
+    return ($user);
 });
+
 Route::get('/test2', function () {
     return view('admin.tambah-data-pengguna');
 });
 
 Route::middleware(['auth'])->group(function () {
 
-    /* Bidan Dashboard Routes */
-    Route::prefix('bidan/dashboard')->namespace('Bidan')->name('bidan.')->middleware('role:bidan')->group(function(){
-        Route::get('/', [BidanController::class, 'index'])->name('dashboard');
-        Route::get('/data-pasien', [BidanPasien::class, 'index'])->name('pasien');
-
-    });
+    Route::get("/redirectAuthenticatedUsers", [RedirectAuthenticatedUsersController::class, 'home']);
 
     /* Admin Dashboard Routes */
-    Route::prefix('admin/dashboard')->namespace('Admin')->name('admin.')->middleware('role:admin')->group(function(){
+    Route::prefix('admin/dashboard')->name('admin.')->middleware('role:admin')->group(function(){
         Route::get('/', [AdminController::class, 'index'])->name('dashboard');
-        Route::get('/data-pengguna', [AdminController::class, 'dataPengguna'])->name('pengguna');
-        Route::get('/data-pasien', [AdminPasien::class, 'index'])->name('pasien');
+
+        /* Data Pengguna */
+        Route::resource('data-pengguna', DataPenggunaController::class);
+
+        /* Data Pasien */
+        Route::resource('data-pasien', AdminPasien::class);
+        // Route::get('data-pasien/cari', AdminPasien::class, 'cari')->name('pasien_cari');
+    });
+
+    /* Bidan Dashboard Routes */
+    Route::prefix('bidan/dashboard')->name('bidan.')->middleware('role:bidan')->group(function(){
+        Route::get('/', [BidanController::class, 'index'])->name('dashboard');
+        Route::get('/data-pasien', [BidanPasien::class, 'index'])->name('pasien');
 
     });
 

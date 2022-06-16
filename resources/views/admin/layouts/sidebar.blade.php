@@ -8,7 +8,7 @@
                 <div class="info">
                     <a data-toggle="collapse" href="#collapseExample" aria-expanded="true">
                         <span>
-                            Admin
+                            {{ explode(' ', Auth::user()->nama )[0] }}
                             <span class="user-level">Administrator</span>
                         </span>
                     </a>
@@ -24,12 +24,12 @@ x
                         <i class="fas fa-home"></i>
                         <strong>Dashboard</strong>
 
-                        <a class="collapse" href="{{ route('admin.pengguna') }}" class="collapsed" aria-expanded="false">
+                        <a class="collapse" href="{{ route('admin.data-pengguna.index') }}" class="collapsed" aria-expanded="false">
                             <i class="fa fa-user "></i>
                             <p>Data Pengguna</p>
                         </a>
 
-                        <a class="collapse" href="{{ route('admin.pasien') }}" class="collapsed" aria-expanded="false">
+                        <a class="collapse" href="{{ route('admin.data-pasien.index') }}" class="collapsed" aria-expanded="false">
                             <i class="fa fa-user "></i>
                             <p>Data Pasien</p>
                         </a>

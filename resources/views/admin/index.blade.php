@@ -1,13 +1,20 @@
 @include('admin.layouts.header')
 <body>
 
-			<!-- Navbar Header -->
-		@include('admin.layouts.navbar')
-			<!-- End Navbar -->
+        <!-- Navbar Header -->
+        @include('admin.layouts.navbar')
+        <!-- End Navbar -->
 
 		<!-- Sidebar -->
 		@include('admin.layouts.sidebar')
 		<!-- End Sidebar -->
+
+        @if ($pesan = session('success'))
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+            <strong>{{ $pesan }}</strong>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
+        @endif
 
 		<div class="main-panel">
 			<div class="content">

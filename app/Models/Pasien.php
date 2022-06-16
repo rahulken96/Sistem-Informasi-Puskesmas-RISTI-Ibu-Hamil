@@ -9,5 +9,11 @@ class Pasien extends Model
 {
     use HasFactory;
 
-    protected $guard = ['id'];
+    protected $guarded = ['id'];
+
+    protected $hidden = [
+        'password',
+        'remember_token',
+        '_token',
+    ];
 }
