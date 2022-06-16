@@ -9,11 +9,6 @@ use Illuminate\Http\Request;
 class DataPasienController extends Controller
 {
 
-    // public function cari(Request $request)
-    // {
-    //     return $request;
-    // }
-
     /**
      * Display a listing of the resource.
      *
