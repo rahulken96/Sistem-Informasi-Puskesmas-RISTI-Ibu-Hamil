@@ -23,8 +23,6 @@ class CreatePasiensTable extends Migration
             $table->integer('umur')->unsigned();
             $table->string('no_hp');
             $table->string('alamat');
-            $table->string('kelurahan_desa');
-            $table->string('kecamatan');
             $table->timestamps();
         });
     }

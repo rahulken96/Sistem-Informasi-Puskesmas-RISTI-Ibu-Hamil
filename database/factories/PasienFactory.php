@@ -21,8 +21,8 @@ class PasienFactory extends Factory
             'tempat_lahir' => $this->faker->city(),
             'tanggal_lahir' => $this->faker->date(),
             'umur' => $this->faker->numberBetween(17,55),
-            'alamat' => $this->faker->streetAddress(),
             'no_hp' => $this->faker->phoneNumber(),
+            'alamat' => $this->faker->streetAddress(),
 
         ];
     }

@@ -6,8 +6,11 @@ use App\Http\Controllers\Admin\DataPenggunaController;
 use App\Http\Controllers\Auth\RedirectAuthenticatedUsersController;
 use App\Http\Controllers\Bidan\BidanController;
 use App\Http\Controllers\Bidan\DataPasienController as BidanPasien;
+use App\Http\Controllers\Kepala\DataPasienController as KepalaPasien;
+use App\Http\Controllers\Kepala\KepalaController;
 use App\Models\Role;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 
@@ -52,13 +55,20 @@ Route::middleware(['auth'])->group(function () {
 
         /* Data Pasien */
         Route::resource('data-pasien', AdminPasien::class);
-        // Route::get('data-pasien/cari', AdminPasien::class, 'cari')->name('pasien_cari');
     });
 
     /* Bidan Dashboard Routes */
     Route::prefix('bidan/dashboard')->name('bidan.')->middleware('role:bidan')->group(function(){
         Route::get('/', [BidanController::class, 'index'])->name('dashboard');
         Route::get('/data-pasien', [BidanPasien::class, 'index'])->name('pasien');
+
+    });
+
+    /* Kepala Dashboard Routes */
+    // return explode(' ', getRoles(Auth::user()->role));
+    Route::prefix('kepala/dashboard')->name('kepala.')->middleware('role:kepala')->group(function(){
+        Route::get('/', [KepalaController::class, 'index'])->name('dashboard');
+        Route::get('/data-pasien', [KepalaPasien::class, 'index'])->name('pasien');
 
     });
 

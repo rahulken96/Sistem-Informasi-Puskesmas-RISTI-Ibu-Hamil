@@ -1,31 +1,22 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Kepala;
 
 use App\Http\Controllers\Controller;
 use App\Models\Pasien;
-use App\Models\Role;
 use Illuminate\Http\Request;
 
 class DataPasienController extends Controller
 {
-
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index()
     {
-        if (isset($request->cari)) {
-            $cari = $request->cari;
-            $pasien = Pasien::where('nama','like',"%".$cari."%")->paginate();
-
-            return view('admin.data-pasien', compact('pasien'));
-        }
-
         $pasien = Pasien::all();
-        return view('admin.data-pasien', compact('pasien'));
+        return view('kepala.data-pasien', compact('pasien'));
     }
 
     /**
@@ -35,8 +26,7 @@ class DataPasienController extends Controller
      */
     public function create()
     {
-
-        return view('admin.tambah-data-pasien');
+        //
     }
 
     /**
