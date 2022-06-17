@@ -29,10 +29,8 @@
                                         </div>
                                       </nav>
 
-									<button class="btn btn-primary btn-round ml-auto" href="admin.tambah-data.pasien"   >
-										<i class="fa fa-plus"></i>
-										Tambah Data
-									</button>
+                                      <a href="{{ route('admin.data-pasien.create') }}" class="btn btn-primary btn-round ml-auto" data-toggle="modal"><i class="fa fa-plus"></i> Tambah Data</a>
+
 								</div>
 							</div>
 							<div class="card-body">

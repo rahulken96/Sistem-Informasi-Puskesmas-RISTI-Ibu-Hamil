@@ -21,8 +21,8 @@ class CreatePasiensTable extends Migration
             $table->string('tempat_lahir');
             $table->date('tanggal_lahir');
             $table->integer('umur')->unsigned();
-            $table->string('alamat');
             $table->string('no_hp');
+            $table->string('alamat');
             $table->timestamps();
         });
     }

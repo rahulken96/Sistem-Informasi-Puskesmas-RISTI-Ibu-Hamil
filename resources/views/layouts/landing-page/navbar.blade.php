@@ -13,14 +13,17 @@
                 @auth
                     <div class="d-flex user-logged nav-item dropdown no-arrow">
                         <a href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
-                            Halo, {{ explode(' ', Auth::user()->nama)[0] }}!
+                            Halo, {{ explode(' ', Auth::user()->nama)[2] }}!
                             <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink" style="right: 0; left: auto;">
-                                @if (Auth::user()->role)
-                                    <li>
-                                        <a href="{{ route(getRoles(Auth::user()->role) . '.dashboard') }}"
-                                            class="dropdown-item">Dashboard</a>
-                                    </li>
-                                @endif
+                                <li>
+                                    @php
+                                        $role = getRoles(Auth::user()->role);
+                                        $kepala = explode(' ', $role)[0];
+                                    @endphp
+
+                                    <a href="{{ route($kepala . '.dashboard') }}"
+                                        class="dropdown-item">Dashboard</a>
+                                </li>
                                 <li>
                                     <a href="#" class="dropdown-item"
                                         onclick="confirm('Anda Yakin ?'); event.preventDefault(); document.getElementById('form-keluar').submit()"><i

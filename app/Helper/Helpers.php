@@ -12,3 +12,12 @@ function getRoles($id){
 
     return $result[0]->jabatan;
 }
+
+function getPasien($id)
+{
+    $pasien = DB::table('pasiens')->where([
+        'id' => $id
+    ])->get();
+
+    return $pasien[0];
+}
