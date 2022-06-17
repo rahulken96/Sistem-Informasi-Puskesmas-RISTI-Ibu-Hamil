@@ -22,15 +22,19 @@ class CheckRole
         if ($role == 'admin' && auth()->user()->role != '1' ) {
             abort(403, 'Akses Ditolak !');
         }
+        
         if ($role == 'bidan' && auth()->user()->role != '2' ) {
             abort(403, 'Akses Ditolak !');
         }
+
         if ($role == 'kepala puskesmas' && auth()->user()->role != '3') {
             abort(403, 'Akses Ditolak !');
         }
+
         if ($role == 'kepala desa' && auth()->user()->role != '4') {
             abort(403, 'Akses Ditolak !');
         }
+
         if ($role == 'kepala kecamatan' && auth()->user()->role != '5') {
             abort(403, 'Akses Ditolak !');
         }

@@ -65,7 +65,6 @@ Route::middleware(['auth'])->group(function () {
     });
 
     /* Kepala Dashboard Routes */
-    // return explode(' ', getRoles(Auth::user()->role));
     Route::prefix('kepala/dashboard')->name('kepala.')->middleware('role:kepala')->group(function(){
         Route::get('/', [KepalaController::class, 'index'])->name('dashboard');
         Route::get('/data-pasien', [KepalaPasien::class, 'index'])->name('pasien');
